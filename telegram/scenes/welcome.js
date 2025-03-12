@@ -15,9 +15,9 @@ welcomeScene.enter(async (ctx) => {
 welcomeScene.on("message", async (ctx) => {
     Utils.updateUserMessageInState(ctx, ctx.message);
 
-    if (ctx.message.text === "📚 View Categories") {
+    if (ctx.message.text === "📚 Посмотреть категории") {
         ctx.scene.enter("CATEGORY_SCENE");
-    } else if (ctx.message.text === "🛒 View Cart") {
+    } else if (ctx.message.text === "🛒 Посмотреть корзину") {
         ctx.scene.enter("CART_SCENE");
     }
 });
@@ -31,10 +31,10 @@ welcomeScene.command("start", async (ctx) => {
 
 welcomeScene.leave(async (ctx) => {
     try {
-        console.log("Cleaning welcome scene");
+        console.log("Очистка приветственной сцены");
         await Utils.clearScene(ctx, true);
     } catch (error) {
-        console.error("Error cleaning welcome scene", error);
+        console.error("Ошибка при очистке приветственной сцены", error);
     }
 });
 
