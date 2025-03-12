@@ -1,10 +1,9 @@
 const { Markup } = require("telegraf")
 
-
 module.exports = {
     registrationSuccessMessage: function (userID, username, shopName) {
         return `
-Congraluations <a href="tg://user?id=${userID}">@${username}</a>! You have just successfully setup <b>${shopName}</b>. You may now proceed to XXX url to add products and configure your store!
+Поздравляем <a href="tg://user?id=${userID}">@${username}</a>! Вы успешно настроили <b>${shopName}</b>. Теперь вы можете перейти по XXX url, чтобы добавить продукты и настроить ваш магазин!
 `
     },
     htmlMode: function () {
@@ -13,8 +12,8 @@ Congraluations <a href="tg://user?id=${userID}">@${username}</a>! You have just 
     confirmationButtons: function () {
         return Markup.inlineKeyboard([
             [
-                { text: "✅ Confirm", callback_data: "Yes" },
-                { text: "❌ Cancel", callback_data: "No" },
+                { text: "✅ Подтвердить", callback_data: "Yes" },
+                { text: "❌ Отменить", callback_data: "No" },
             ],
         ])
     },

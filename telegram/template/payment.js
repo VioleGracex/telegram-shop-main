@@ -10,7 +10,7 @@ Welcome to the payment page, you're able to make payment for your order now.
     paymentMenuButtons: function () {
         const extra = Markup
             .keyboard([
-                ["🏠 Back to Home"]
+                ["🏠 🏠 Вернуться на главную"]
             ])
             .resize()
         extra.parse_mode = "HTML"

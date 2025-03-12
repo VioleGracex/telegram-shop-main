@@ -11,7 +11,7 @@ Just two more steps before we're able to generate your invoice! 🙂
     dateMenuButtons: function () {
         const extra = Markup
             .keyboard([
-                ["🏠 Back to Home"]
+                ["🏠 🏠 Вернуться на главную"]
             ])
             .resize()
         extra.parse_mode = "HTML"

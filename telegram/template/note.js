@@ -1,16 +1,15 @@
 const { Markup } = require("telegraf")
 
-
 module.exports = {
     noteWelcomeMessage: function () {
         return `
-Last step before we're able to generate your invoice! 🙂
+Последний шаг перед тем, как мы сможем сгенерировать ваш счет! 🙂
 `
     },
     noteMenuButtons: function () {
         const extra = Markup
             .keyboard([
-                ["🏠 Back to Home"]
+                ["🏠 Вернуться на главную"]
             ])
             .resize()
         extra.parse_mode = "HTML"
@@ -18,24 +17,24 @@ Last step before we're able to generate your invoice! 🙂
     },
     inputNoteMessage: function () {
         return `
-Would you like to leave a note along with the order?
+Хотите оставить заметку вместе с заказом?
 
-<i>Kindly send a message that you wish to place on your order, or press the Skip button below this message to leave nothing</i>
+<i>Пожалуйста, отправьте сообщение, которое вы хотите разместить в вашем заказе, или нажмите кнопку "Пропустить" ниже этого сообщения, чтобы оставить без изменений</i>
 `
     },
     inputNoteButton: function () {
         return Markup.inlineKeyboard([
-            { text: "⏩ Skip", callback_data: "Skip" }
+            { text: "⏩ Пропустить", callback_data: "Skip" }
         ])
     },
     noteConfirmationMessage: function(message) {
         return `
-This is the note that you wish to leave for the seller: <i>${message}</i>
+Это заметка, которую вы хотите оставить продавцу: <i>${message}</i>
 `
     },
     cancelNoteMessage: function () {
         return `
-You have just cancelled your current note. Please leave another note for the seller.
+Вы только что отменили текущую заметку. Пожалуйста, оставьте другую заметку для продавца.
 `
     },
 }

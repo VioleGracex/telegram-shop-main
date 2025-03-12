@@ -6,7 +6,6 @@ const _ = require("lodash")
 const Database = require("../database/actions")
 const Template = require("../template")
 
-
 const productScene = new Scenes.BaseScene("PRODUCT_SCENE")
 
 /**
@@ -96,7 +95,8 @@ productScene.on("message", async (ctx) => {
     Utils.checkForHomeButton(ctx, ctx.message.text)
 
     if (Utils.isInputMode(ctx)) {       // Checks if user enters text input option
-        if (ctx.message.text.toLowerCase() === "cancel") {
+        const text = ctx.message.text.toLowerCase()
+        if (text === "cancel" || text === "отменить") {
             return await Utils.cancelInputMode(ctx, Template.cancelQuantityInputMessage(), 5)
         }
 

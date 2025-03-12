@@ -10,7 +10,7 @@ Welcome to <b>${shopName}'s</b> catalogue!
     categoryMenuButtons: function () {
         const extra = Markup
             .keyboard([
-                ["🏠 Back to Home"]
+                ["🏠 🏠 Вернуться на главную"]
             ])
             .resize()
         extra.parse_mode = "HTML"

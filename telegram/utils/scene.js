@@ -138,7 +138,7 @@ module.exports = {
         module.exports.updateCleanUpState(ctx, { id: welcome.message_id, type: "welcome" })
     },
     checkForHomeButton: function (ctx, message) {
-        if (message === "🏠 Back to Home") {
+        if (message === "🏠 🏠 Вернуться на главную") {
             ctx.scene.enter("WELCOME_SCENE")
         }
     },

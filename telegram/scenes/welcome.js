@@ -15,10 +15,14 @@ welcomeScene.enter(async (ctx) => {
 welcomeScene.on("message", async (ctx) => {
     Utils.updateUserMessageInState(ctx, ctx.message);
 
-    if (ctx.message.text === "📚 Посмотреть категории") {
+    const text = ctx.message.text.toLowerCase();
+
+    if (text === "📚 посмотреть категории" || text === "📚 view categories") {
         ctx.scene.enter("CATEGORY_SCENE");
-    } else if (ctx.message.text === "🛒 Посмотреть корзину") {
+    } else if (text === "🛒 посмотреть корзину" || text === "🛒 view cart") {
         ctx.scene.enter("CART_SCENE");
+    } else if (text === "отменить" || text === "cancel") {
+        ctx.scene.leave();
     }
 });
 

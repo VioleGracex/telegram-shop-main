@@ -80,7 +80,7 @@ Have a voucher code to apply? If not, proceed to checkout.
             .keyboard([
                 ["⭐ Apply Voucher Code"],
                 ["💳 Proceed to Payment"],
-                ["🏠 Back to Home"]
+                ["🏠 🏠 Вернуться на главную"]
             ])
             .resize()
         extra.parse_mode = "HTML"
