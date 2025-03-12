@@ -34,8 +34,8 @@ paymentScene.enter(async (ctx) => {
             chat_id: ctx.chat.id,
             provider_token: providerToken,
             start_parameter: "get_access",
-            title: `Invoice (${moment().format("HH:mm A, DD/MM/YYYY")})`,
-            description: `Your total order amounts to ${numeral(totalCost / 100).format("$0,0.00")}.`,
+            title: `Счет (${moment().format("HH:mm A, DD/MM/YYYY")})`,
+            description: `Ваша общая сумма заказа составляет ${numeral(totalCost / 100).format("$0,0.00")}.`,
             currency: "SGD",
             prices: priceLabels,
             payload: {
@@ -49,20 +49,20 @@ paymentScene.enter(async (ctx) => {
         Utils.updateInvoiceMessageInState(ctx, invoice);
     } catch (error) {
         if (error.message === 'MISSING_PROVIDER_TOKEN') {
-            await ctx.reply('Payment provider token is missing. Please contact support.');
+            await ctx.reply('Токен поставщика платежных услуг отсутствует. Пожалуйста, свяжитесь с поддержкой.');
         } else if (error.response && error.response.error_code === 400 && error.response.description === 'Bad Request: PAYMENT_PROVIDER_INVALID') {
-            await ctx.reply('It seems there is an issue with the payment provider. Please try again later.');
+            await ctx.reply('Похоже, возникла проблема с поставщиком платежных услуг. Пожалуйста, попробуйте позже.');
         } else {
-            await ctx.reply('An unexpected error occurred. Please try again later.');
+            await ctx.reply('Произошла непредвиденная ошибка. Пожалуйста, попробуйте позже.');
         }
-        await ctx.reply('Returning to the home screen.', Template.homeKeyboard);
+        await ctx.reply('Возвращаемся на главный экран.', Template.homeKeyboard);
         ctx.scene.enter("WELCOME_SCENE"); // Transition to the welcome scene
     }
 });
 
 paymentScene.on("successful_payment", async (ctx) => {
     try {
-        console.log("Success payment", ctx.message.successful_payment);
+        console.log("Успешный платеж", ctx.message.successful_payment);
         Utils.replaceInvoiceToReceiptInState(ctx);
 
         const payment = ctx.message.successful_payment;
@@ -85,9 +85,9 @@ paymentScene.on("successful_payment", async (ctx) => {
         await Payment.createPayment(ctx, addressDetails, ctx.scene.state.deliveryDate, ctx.scene.state.note);
         ctx.scene.enter("WELCOME_SCENE"); // Transition to the welcome scene
     } catch (error) {
-        console.error('Error handling successful payment:', error);
-        await ctx.reply('There was a problem processing your payment. Please contact support.');
-        await ctx.reply('Returning to the home screen.');
+        console.error('Ошибка при обработке успешного платежа:', error);
+        await ctx.reply('Произошла проблема с обработкой вашего платежа. Пожалуйста, свяжитесь с поддержкой.');
+        await ctx.reply('Возвращаемся на главный экран.');
         ctx.scene.enter("WELCOME_SCENE"); // Transition to the welcome scene
     }
 });
@@ -98,7 +98,7 @@ paymentScene.on("message", async (ctx) => {
 });
 
 paymentScene.leave(async (ctx) => {
-    console.log("Cleaning payment scene");
+    console.log("Очистка сцены платежей");
     await Utils.clearScene(ctx, true);
 });
 

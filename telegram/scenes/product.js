@@ -109,9 +109,9 @@ productScene.on("message", async (ctx) => {
         try {
             const quantity = parseInt(ctx.message.text)
             if (isNaN(quantity)) {
-                throw "Please enter a <b>number</b>!"
+                throw "Пожалуйста, введите <b>число</b>!"
             } else if (quantity > available) {
-                throw `Kindly enter a number smaller than <b>${available}</b>!`
+                throw `Пожалуйста, введите число меньшее чем <b>${available}</b>!`
             }
 
             await Product.checkValidQuantity(ctx, productName, quantity)
@@ -136,7 +136,7 @@ productScene.on("message", async (ctx) => {
 
 productScene.leave(async (ctx) => {
     try {
-        console.log("Clearing product scene")
+        console.log("Очистка сцены продуктов")
         Utils.clearScene(ctx, true)
     } catch (error) {
 

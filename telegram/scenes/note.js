@@ -36,7 +36,7 @@ noteScene.on("message", async (ctx) => {
 
 noteScene.on("callback_query", async (ctx) => {
     if (Utils.isInputMode(ctx)) {
-        if (ctx.callbackQuery.data === "Yes") {
+        if (ctx.callbackQuery.data === "Yes" || ctx.callbackQuery.data === "Да") {
             Cart.editOverallCartByID(
                 ctx,
                 ctx.scene.state.cartMessage.id,
@@ -54,7 +54,7 @@ noteScene.on("callback_query", async (ctx) => {
             Utils.cancelButtonConfirmation(ctx, Template.cancelNoteMessage(), 3)
             Utils.cleanUpMessage(ctx, true, ["user"], true)     // Delete user message
         }
-    } else if (ctx.callbackQuery.data === "Skip") {
+    } else if (ctx.callbackQuery.data === "Skip" || ctx.callbackQuery.data === "Пропустить") {
         ctx.scene.enter("PAYMENT_SCENE", {
             voucher: ctx.scene.state.voucher,
             deliveryDate: ctx.scene.state.deliveryDate,
@@ -66,7 +66,7 @@ noteScene.on("callback_query", async (ctx) => {
 
 noteScene.leave(async (ctx) => {
     try {
-        console.log("Cleaning note scene")
+        console.log("Очистка сцены заметок")
         Utils.clearTimeout(ctx)
         Utils.cleanUpMessage(ctx, true)
     } catch (error) {

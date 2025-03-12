@@ -4,7 +4,6 @@ const Utils = require("../utils")
 const Voucher = require("../modules/voucher")
 const Template = require("../template")
 
-
 const cartScene = new Scenes.BaseScene("CART_SCENE")
 
 /**
@@ -40,7 +39,7 @@ cartScene.hears("🏠 🏠 Вернуться на главную", async (ctx) 
     ctx.scene.enter("WELCOME_SCENE")
 })
 
-cartScene.hears("⭐ Apply Voucher Code", async (ctx) => {
+cartScene.hears("⭐ Применить промокод", async (ctx) => {
     Utils.updateUserMessageInState(ctx, ctx.message)
 
     if (ctx.session.cart.isEmpty) {
@@ -53,7 +52,7 @@ cartScene.hears("⭐ Apply Voucher Code", async (ctx) => {
     }
 })
 
-cartScene.hears("💳 Proceed to Payment", async (ctx) => {
+cartScene.hears("💳 Перейти к оплате", async (ctx) => {
     Utils.updateUserMessageInState(ctx, ctx.message)
 
     if (ctx.session.cart.isEmpty) {
@@ -74,7 +73,7 @@ cartScene.on("message", async (ctx) => {
     Utils.updateUserMessageInState(ctx, ctx.message)        // Append normal messages into session clean up state
 
     if (Utils.isInputMode(ctx)) {
-        if (ctx.message.text === "cancel") {
+        if (ctx.message.text.toLowerCase() === "cancel" || ctx.message.text.toLowerCase() === "отменить") {
             return await Utils.cancelInputMode(ctx, Template.cancelVoucherInputMessage(), 5)
         }
         const voucher = await Voucher.getVoucher(ctx, ctx.message.text)
@@ -98,7 +97,7 @@ cartScene.on("message", async (ctx) => {
 
 cartScene.leave(async (ctx) => {
     try {
-        console.log("Cleaning cart scene")
+        console.log("Очистка сцены корзины")
         Utils.clearTimeout(ctx)
         Utils.cleanUpMessage(ctx, true, ["user", "system", "welcome"])
     } catch (error) {
