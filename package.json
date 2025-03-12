@@ -1,0 +1,26 @@
+{
+    "name": "teleshop",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "dev:telegram": "cd telegram && npm run dev",
+        "dev:frontend": "cd frontend && npm run dev",
+        "dev:cron": "cd cron && npm run dev"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jeraldlyh/TeleShop.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jeraldlyh/TeleShop/issues"
+    },
+    "homepage": "https://github.com/jeraldlyh/TeleShop#readme",
+    "dependencies": {
+        "next": "^15.1.4",
+        "react": "^19.0.0",
+        "sequelize": "^6.37.5"
+    }
+}
